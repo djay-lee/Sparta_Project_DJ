@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    
+    <title>Document</title>
+    
+    <!-- css 부르는법 다르지 않은지 확인 -->
+    <link rel="stylesheet" type="text/css" href="filter.css">
+    
+    <!-- javascript 분리하는법 확인 -->
+    <script>
+        var Search = {
+
+            searchForm: $("#search-form"),
+            searchTerms: $("#search-terms"),
+            searchFilters: $("#search-filters"),
+            searchFiltersTitle: $("#search-filters-title"),
+            offset: $("#search-filters-title").offset(),
+            win: $(window),
+
+            init: function () {
+                Search.bindUIEvents();
+            },
+
+            bindUIEvents: function () {
+
+                Search.searchFiltersTitle
+                    .on(
+                        "click",
+                        Search.toggleSearchFilters
+                    );
+
+                Search.win
+                    .on(
+                        "scroll",
+                        Search.filterHeaderPosition
+                    );
+
+                Search.searchForm
+                    .on(
+                        "submit",
+                        Search.searchSubmit
+                    );
+
+            },
+
+            toggleSearchFilters: function () {
+                Search.searchForm
+                    .toggleClass("filters-open");
+            },
+
+            filterHeaderPosition: function () {
+
+                var scrollTop = Search.win.scrollTop();
+
+                if (scrollTop > Search.offset.top) {
+                    Search.searchFilters.addClass("pinned");
+                    Search.searchTerms.css("margin-bottom", Search.searchFilters.outerHeight());
+                } else {
+                    Search.searchFilters.removeClass("pinned");
+                    Search.searchTerms.css("margin-bottom", "10px");
+                };
+
+            },
+
+            searchSubmit: function () {
+                // process new search
+                return false;
+            }
+
+        };
+
+        Search.init();
+    </script>
+</head>
+
+<body>
+    <form role="search" class="search-form" id="search-form" action="#" method="post">
+
+        <section class="search-terms">
+            <label for="search-term" class="search-term-label screen-reader-text">Search Terms</label>
+            <div>
+                <span class="search-term-wrap">
+                    <input type="search" id="search-term" class="search-term">
+                </span>
+                <span class="search-term-button-wrap">
+                    <input type="submit" value="Search" class="search-button">
+                </span>
+            </div>
+        </section>
+
+        <section class="search-filters" id="search-filters">
+
+            <h3 class="search-filters-title" id="search-filters-title">Search Filters</h3>
+
+            <div class="size-filters filter-group">
+
+                <div>
+                    <input type="checkbox" id="filter-size-small">
+                    <label for="filter-size-small">Small</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="filter-size-medium" checked>
+                    <label for="filter-size-medium">Medium</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="filter-size-large">
+                    <label for="filter-size-large">Large</label>
+                </div>
+
+            </div>
+
+            <div class="content-filters filter-group">
+
+                <div>
+                    <input type="radio" id="filter-content-cats" name="filter-content">
+                    <label for="filter-content-cats">Cats</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="filter-content-dogs" name="filter-content">
+                    <label for="filter-content-dogs">Dogs</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="filter-content-Birds" name="filter-content">
+                    <label for="filter-content-birds">Birds</label>
+                </div>
+            </div>
+
+            <small class="filter-explanation">Choosing filters automatically refines and refreshes search.</small>
+
+        </section>
+    </form>
+
+    <section class="search-results">
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+        <div class="result"></div>
+    </section>
+</body>
+
+</html>
