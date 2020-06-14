@@ -36,6 +36,7 @@ driver.implicitly_wait(1)
 driver.get('https://watcha.com/ko-KR')
 driver.implicitly_wait(3)
 driver.execute_script("window.scrollTo(0, 100)")
+
 driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/nav/ul/li[1]/button').click()
 time.sleep(1)
 driver.save_screenshot('jebal.png')
