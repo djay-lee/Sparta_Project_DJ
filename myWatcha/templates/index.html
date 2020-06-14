@@ -21,81 +21,16 @@
 
     <!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
-    
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    
+
     <title>Document</title>
-    
-    <!-- css 부르는법 다르지 않은지 확인 -->
-    <link rel="stylesheet" type="text/css" href="filter.css">
-    
-    <!-- javascript 분리하는법 확인 -->
-    <script>
-        var Search = {
 
-            searchForm: $("#search-form"),
-            searchTerms: $("#search-terms"),
-            searchFilters: $("#search-filters"),
-            searchFiltersTitle: $("#search-filters-title"),
-            offset: $("#search-filters-title").offset(),
-            win: $(window),
+    <!-- css, js 불러오기 -->
+    <link href="{{ url_for('static',filename='filter.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='star.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='filter.js') }}"></script>
 
-            init: function () {
-                Search.bindUIEvents();
-            },
-
-            bindUIEvents: function () {
-
-                Search.searchFiltersTitle
-                    .on(
-                        "click",
-                        Search.toggleSearchFilters
-                    );
-
-                Search.win
-                    .on(
-                        "scroll",
-                        Search.filterHeaderPosition
-                    );
-
-                Search.searchForm
-                    .on(
-                        "submit",
-                        Search.searchSubmit
-                    );
-
-            },
-
-            toggleSearchFilters: function () {
-                Search.searchForm
-                    .toggleClass("filters-open");
-            },
-
-            filterHeaderPosition: function () {
-
-                var scrollTop = Search.win.scrollTop();
-
-                if (scrollTop > Search.offset.top) {
-                    Search.searchFilters.addClass("pinned");
-                    Search.searchTerms.css("margin-bottom", Search.searchFilters.outerHeight());
-                } else {
-                    Search.searchFilters.removeClass("pinned");
-                    Search.searchTerms.css("margin-bottom", "10px");
-                };
-
-            },
-
-            searchSubmit: function () {
-                // process new search
-                return false;
-            }
-
-        };
-
-        Search.init();
-    </script>
 </head>
 
 <body>
@@ -118,14 +53,38 @@
             <h3 class="search-filters-title" id="search-filters-title">Search Filters</h3>
 
             <div class="size-filters filter-group">
-
                 <div>
-                    <input type="checkbox" id="filter-size-small">
-                    <label for="filter-size-small">Small</label>
+                    <fieldset class="rating" id="star">
+                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
+                            title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half"
+                            for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
+                            title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half"
+                            for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"
+                            title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half"
+                            for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
+                            title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half"
+                            for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
+                            title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half"
+                            for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                    </fieldset>
                 </div>
 
+            <!-- <div>
+                    <input type="checkbox" id="filter-size-small">
+                    <label for="filter-size-small">Small</label>
+                </div> -->
+
                 <div>
-                    <input type="checkbox" id="filter-size-medium" checked>
+                    <input type="checkbox" id="filter-size-medium">
                     <label for="filter-size-medium">Medium</label>
                 </div>
 
@@ -136,7 +95,7 @@
 
             </div>
 
-            <div class="content-filters filter-group">
+            <!-- <div class="content-filters filter-group">
 
                 <div>
                     <input type="radio" id="filter-content-cats" name="filter-content">
@@ -152,7 +111,7 @@
                     <input type="radio" id="filter-content-Birds" name="filter-content">
                     <label for="filter-content-birds">Birds</label>
                 </div>
-            </div>
+            </div> -->
 
             <small class="filter-explanation">Choosing filters automatically refines and refreshes search.</small>
 
