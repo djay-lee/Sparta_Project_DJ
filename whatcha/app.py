@@ -84,8 +84,8 @@ def get_info():
     for url in url_list:
         data = requests.get(url, headers=headers)
         soup = BeautifulSoup(data.text, 'html.parser')
-        poster = soup.select()
-        year = soup.select()
+        poster = soup.select('root > div > div.css-1sh3zvx-NavContainer.ebsyszu0 > section > div > div > div > section > div.css-mrf2sf-PosterContainer.e1svyhwg1 > div.css-16l0ojz-MaxWidthGrid.e445inc0 > div > div > div > div > img')
+        year = soup.select('root > div > div.css-1sh3zvx-NavContainer.ebsyszu0 > section > div > div > div > section > div.css-m4wuz0-PosterContainer.e1svyhwg1 > div.css-16l0ojz-MaxWidthGrid.e445inc0 > div > div > div > div > img')
         genre = soup.select()
         nation = soup.select()
         director = soup.select()
