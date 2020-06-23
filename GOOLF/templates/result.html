@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <title>GOOOOOOOLF</title>
+
+    <script>
+    $(document).ready(function() {
+        // index.html 로드가 완료되면 자동으로 show_star() 함수를 호출합니다.
+        get_players();
+    });
+    
+    function get_players() {
+        $.ajax({
+            type: "GET",
+            url: "/get",
+            data: {},
+            success: function (response) {
+                let players_list = response['players_list'];
+                
+                let user_height = players_list[players_list.length]['height'];
+                let user_weight = players_list[players_list.length]['weight'];
+
+                for (let i=0; i<players_list.length-1; i++) {
+                    if (players_list[i]['height'] <= user_height*1.05 && players_list[i]['height'] >= user_height*9.05){
+                        print (players_list[i]['name'])
+                    }
+                    
+                }
+
+                sort_players();
+            }
+        });
+    }
+
+    function sort_players() {
+
+    }
+
+    </script>
+</head>
+<body>
+    <!-- 카드형식으로 비슷한 선수들 리스트 보여주기 -->
+</body>
+</html>
