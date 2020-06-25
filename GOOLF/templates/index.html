@@ -30,35 +30,7 @@
     <link href="{{ url_for('static',filename='profile.css') }}" rel="stylesheet">
 
     <script>
-        function user_give (){
-            let age = $("#age").val();
-            let weight = $("#weight").val();
-            let height = $("#height").val();
-
-            $.ajax({
-                type: "POST",
-                url: "/submit",
-                data: {'age_give':age, 'weight_give':weight,'height_give':height},
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        alert('잠시 기다려줘요')
-                    }
-                }
-            })
-        }
-
-        // function sort_player (height_pro, weight_pro, name_pro) {
-        //     let height = $('#height').val();
-        //     let weight = $('#weight').val();
-        //     let age = $('#age').val();
-        //     // 잘 안걸러지는거같음
-        //     if ( height_pro <= height*1.05 && height_pro >= height*0.95 ) {
-        //         if ( weight_pro <= weight*1.05 && weight_pro >= weight*0.95 ) {
-        //             console.log(name_pro);
-        //         }
-        //     } 
-        // }
-
+        
     </script>
 
 </head>
@@ -68,20 +40,20 @@
         <div class="form">
             <h1>나랑 비슷한 PGA 선수 찾기</h1>
             <!-- form에서 post 날리는법 찾기 -->
-            <form action="" method="POST">
+            <form action="/submit" method="GET">
                 <div class="inputbox">
-                    <input type="text" name="height" id="height" required>
+                    <input type="number" name="height" id="height" required>
                     <label>키(cm)</label>
                 </div>
                 <div class="inputbox">
-                    <input type="text" name="weight" id="weight" required>
+                    <input type="number" name="weight" id="weight" required>
                     <label>몸무게(kg)</label>
                 </div>
                 <div class="inputbox">
-                    <input type="text" name="age" id="age" required>
+                    <input type="number" name="age" id="age" required>
                     <label>나이(만)</label>
                 </div>
-                <button class="btn" onclick=user_give()>전송</button>
+                <button class="btn" type="submit">전송</button>
             </form>
 
         </div>

@@ -29,41 +29,12 @@
     <title>GOOOOOOOLF</title>
 
     <script>
-    $(document).ready(function() {
-        // index.html 로드가 완료되면 자동으로 show_star() 함수를 호출합니다.
-        get_players();
-    });
-    
-    function get_players() {
-        $.ajax({
-            type: "GET",
-            url: "/get",
-            data: {},
-            success: function (response) {
-                let players_list = response['players_list'];
-                
-                let user_height = players_list[players_list.length]['height'];
-                let user_weight = players_list[players_list.length]['weight'];
-
-                for (let i=0; i<players_list.length-1; i++) {
-                    if (players_list[i]['height'] <= user_height*1.05 && players_list[i]['height'] >= user_height*9.05){
-                        print (players_list[i]['name'])
-                    }
-                    
-                }
-
-                sort_players();
-            }
-        });
-    }
-
-    function sort_players() {
-
-    }
-
     </script>
 </head>
 <body>
     <!-- 카드형식으로 비슷한 선수들 리스트 보여주기 -->
+    <p>너의 키는 {{height}}cm, 몸무게는 {{weight}}kg, 나이는 만{{age}}세</p>
+    <p>{{players}}</p>
+
 </body>
 </html>

@@ -53,17 +53,29 @@ def player_data() :
 def index():
     return render_template("index.html")
 
-@app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST', 'GET'])
 def user_give ():
-    user_info = {}
-    user_info['name'] = 'user'
-    user_info['age'] = request.form['age_give']
-    user_info['weight'] = request.form['weight_give']
-    user_info['height'] = request.form['height_give']
-    
-    db.player_info.insert_one(user_info)
+    # form에서 GET으로 보낸 값들 받기
+    height = float(request.args.get('height'))
+    weight = float(request.args.get('weight'))
+    age = float(request.args.get('age'))
 
-    return render_template("result.html")
+    # db에서 선수들 데이터 가져오기
+    players = list(db.player_info.find({},{'_id':False}))
+
+    # 키, 몸무게 +- 5% 들어오는 선수들 추리기
+    players_filtered = []
+    for player in players :
+        if int(player['height']) <= height*1.1 and int(player['height']) >= height*0.9 :
+            players_filtered.append(player)
+    
+    players_final = []
+    for player in players_filtered :
+        if int(player['weight']) <= weight*1.1 and int(player['weight']) >= weight*0.9 :
+            players_final.append(player)
+
+    return render_template("result.html", height=height, weight=weight, age=age, players=players_final)
+
 
 @app.route('/get', methods=['GET'])
 def player_give () :
