@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,15 +27,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-    <title>GOOOOOOOLF</title>
+    <!-- css, js 불러오기 -->
+    <link href="{{ url_for('static',filename='card.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='card.js') }}">
+
+    <title>GOOLF</title>
 
     <script>
+        function card_list (len) {
+            for (let i=0; i<len; )
+            let card_html = `<div class="col-md-4 mt-4">
+                    <div class="card profile-card-5">
+                        <div class="card-img-block">
+                            <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c" alt="Card image cap">
+                        </div>
+                        <div class="card-body pt-0">
+                        <h5 class="card-title">Florence Garza</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                    </div>
+                    <p class="mt-3 w-100 float-left text-center"><strong>Card with Floting Picture</strong></p>
+                </div>`
+        }
     </script>
 </head>
+
 <body>
     <!-- 카드형식으로 비슷한 선수들 리스트 보여주기 -->
-    <p>너의 키는 {{height}}cm, 몸무게는 {{weight}}kg, 나이는 만{{age}}세</p>
-    <p>{{players}}</p>
+    <section>
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">너의 키는 {{height}}cm, 몸무게는 {{weight}}kg, 나이는 만{{age}}세</h1>
+            </div>
+        </div>
+    </section>
 
 </body>
+
 </html>
